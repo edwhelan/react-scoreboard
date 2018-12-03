@@ -48,9 +48,9 @@ class App extends Component {
           id={score.id}
           name={score.name}
           score={score.score}
-          handleClick={this._incrementScoreById.bind(this)}
-          handleClickDown={this._decrementScoreById.bind(this)}
-          handleClickUp={this._resetScoreById.bind(this)}
+          handleClick={(e) => this._incrementScoreById(e)}
+          handleClickDown={(e) => this._decrementScoreById(e)}
+          handleClickUp={(e) => this._resetScoreById(e)}
         />
 
       );
