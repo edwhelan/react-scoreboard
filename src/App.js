@@ -46,31 +46,89 @@ class App extends Component {
           <h2 >{score.name}</h2>
           <h3>{score.score}</h3>
           <button onClick={() => this._incrementScoreById(score.id)}>+</button>
+          <button onClick={() => this._decrementScoreById(score.id)}>-</button>
+          <button onClick={() => this._resetScoreById(score.id)}>reset</button>
         </div>
       );
     });
     return cards;
   }
+  // v1 map manually constructing replacement
+  // _incrementScoreById(id) {
+  //   // find player in this.state.scores
+  //   const newScores = this.state.scores.map(score => {
+  //     if (score.id !== id) {
+  //       return score;
+  //     } else {
+  //       return {
+  //         id: score.id,
+  //         name: score.name,
+  //         //increment score
+  //         score: score.score + 1
+  //       }
+  //     }
+  //   })
+  //   //and call this.setState
+  //   this.setState({
+  //     scores: newScores
+  //   })
+  // }
+
+  //v2 .map using a shorthand to copy values out of the original
+
   _incrementScoreById(id) {
-    // find player in this.state.scores
+    //find player in this. state.scores
+    // increment score
     const newScores = this.state.scores.map(score => {
       if (score.id !== id) {
-        return score;
+        return score
       } else {
         return {
-          id: score.id,
-          name: score.name,
-          //increment score
+          ...score,
           score: score.score + 1
         }
       }
-    })
-    //and call this.setState
+    });
     this.setState({
       scores: newScores
     })
   }
 
+  _decrementScoreById(id) {
+    //find player in this. state.scores
+    // increment score
+    const newScores = this.state.scores.map(score => {
+      if (score.id !== id) {
+        return score
+      } else {
+        return {
+          ...score,
+          score: score.score - 1
+        }
+      }
+    });
+    this.setState({
+      scores: newScores
+    })
+  }
+
+  _resetScoreById(id) {
+    //find player in this. state.scores
+    // increment score
+    const newScores = this.state.scores.map(score => {
+      if (score.id !== id) {
+        return score
+      } else {
+        return {
+          ...score,
+          score: 0
+        }
+      }
+    });
+    this.setState({
+      scores: newScores
+    })
+  }
 }
 
 export default App;
