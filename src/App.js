@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Scorecard from './Scorecard';
 
 class App extends Component {
   constructor(props) {
@@ -42,13 +43,16 @@ class App extends Component {
   _scoresAsCards() {
     const cards = this.state.scores.map(score => {
       return (
-        <div key={score.id}>
-          <h2 >{score.name}</h2>
-          <h3>{score.score}</h3>
-          <button onClick={() => this._incrementScoreById(score.id)}>+</button>
-          <button onClick={() => this._decrementScoreById(score.id)}>-</button>
-          <button onClick={() => this._resetScoreById(score.id)}>reset</button>
-        </div>
+        <Scorecard
+          key={score.id}
+          id={score.id}
+          name={score.name}
+          score={score.score}
+          handleClick={this._incrementScoreById.bind(this)}
+          handleClickDown={this._decrementScoreById.bind(this)}
+          handleClickUp={this._resetScoreById.bind(this)}
+        />
+
       );
     });
     return cards;
